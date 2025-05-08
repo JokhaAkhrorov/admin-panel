@@ -190,7 +190,7 @@ function ProductsModal({ getProducts, setOpen, editData }) {
 
                     {/* Category */}
                     <select name="categoryId" value={form.categoryId} onChange={handleChange} className="w-full mb-3 p-2 border rounded">
-                        <option value="">Kategoriya tanlang</option>
+                        <option value="">Select Category:</option>
                         {categoryList.map(cat => (
                             <option key={cat.id} value={cat.id}>{cat.name_en}</option>
                         ))}
