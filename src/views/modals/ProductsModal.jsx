@@ -244,16 +244,6 @@ function ProductsModal({ getProducts, setOpen, editData }) {
                         ))}
                         <button type="button" onClick={addMaterial} className="text-blue-500 text-sm">+ Add Material</button>
                     </div>
-
-                    {/* Upload */}
-                    <div className="mb-4 border-dashed border-2 border-gray-300 rounded-lg p-4 bg-gray-50 hover:bg-gray-100">
-                        <label className="flex flex-col items-center cursor-pointer">
-                            <img src={uploud} alt="Upload" className="w-12 h-12 mb-2" />
-                            <p className="text-sm">Click or drag to upload images</p>
-                            <input type="file" accept="image/*" multiple onChange={handleFileChange} className="hidden" />
-                        </label>
-                    </div>
-
                     <button type="submit" className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">
                         {editData ? 'Update Product' : 'Create Product'}
                     </button>

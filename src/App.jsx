@@ -25,7 +25,7 @@ function App() {
         <Route path="login" element={<Login />} />
         {/* Admin page  */}
         <Route path="admin" element={<AdminLayout />}>
-          <Route index element={<Products />} />
+          <Route index element={<Category />} />
           <Route path="category" element={<Category />} />
           <Route path="products" element={<Products />} />
           <Route path="discount" element={<Discount />} />
