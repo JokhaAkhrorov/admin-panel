@@ -39,7 +39,9 @@ function Team() {
           toast.success(item?.data?.message)
           getTeam()
         } else {
-          toast.error(item?.message?.message)
+          // toast.error(item?.message?.message)
+          toast.error("Status-500 HATO")
+
         }
       })
   }

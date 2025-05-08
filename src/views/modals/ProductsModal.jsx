@@ -43,7 +43,7 @@ function ProductsModal({ getProducts, setOpen, editData }) {
                 setDiscountsList((await discountsRes.json())?.data || []);
                 setCategoryList((await categoryRes.json())?.data || []);
             } catch {
-                toast.error("Ma'lumotlarni yuklab bo‘lmadi");
+                toast.error("Didn't upload files");
             }
         };
 
@@ -146,10 +146,10 @@ function ProductsModal({ getProducts, setOpen, editData }) {
                 getProducts();
                 setOpen(false);
             } else {
-                toast.error(result?.message?.message || "Xatolik yuz berdi");
+                toast.error(result?.message?.message || "Error!");
             }
         } catch (error) {
-            toast.error("Server bilan bog‘lanishda xatolik");
+            toast.error("Don't connect with server");
         }
     };
 
@@ -186,7 +186,7 @@ function ProductsModal({ getProducts, setOpen, editData }) {
 
                     {/* Numeric fields */}
                     <input type="number" name="price" value={form.price} onChange={handleChange} placeholder="Price" className="w-full mb-3 p-2 border rounded" required />
-                    <input type="number" name="priceNum" value={form.priceNum} onChange={handleChange} placeholder="Minimal sotish soni" className="w-full mb-3 p-2 border rounded" required />
+                    <input type="number" name="priceNum" value={form.priceNum} onChange={handleChange} placeholder="Minimal" className="w-full mb-3 p-2 border rounded" required />
 
                     {/* Category */}
                     <select name="categoryId" value={form.categoryId} onChange={handleChange} className="w-full mb-3 p-2 border rounded">
@@ -237,8 +237,8 @@ function ProductsModal({ getProducts, setOpen, editData }) {
                         <p className="font-medium mb-1">Materials:</p>
                         {form.materials.map((mat, i) => (
                             <div key={i} className="flex gap-2 mb-2">
-                                <input value={mat.name} onChange={(e) => handleMaterialChange(i, 'name', e.target.value)} placeholder="Nomi" className="flex-1 p-2 border rounded" />
-                                <input value={mat.value} onChange={(e) => handleMaterialChange(i, 'value', e.target.value)} placeholder="Qiymat" className="w-24 p-2 border rounded" />
+                                <input value={mat.name} onChange={(e) => handleMaterialChange(i, 'name', e.target.value)} placeholder="Name" className="flex-1 p-2 border rounded" />
+                                <input value={mat.value} onChange={(e) => handleMaterialChange(i, 'value', e.target.value)} placeholder="Value" className="w-24 p-2 border rounded" />
                                 <button type="button" onClick={() => removeMaterial(i)} className="text-red-500">✕</button>
                             </div>
                         ))}
