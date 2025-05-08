@@ -6,7 +6,7 @@ import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css';
 
 
-function ContactModal({setOpen , getContact}) {
+function ContactModal({ setOpen, getContact }) {
 
 
   const [phone_number, setPhone_number] = useState("");
@@ -65,26 +65,26 @@ function ContactModal({setOpen , getContact}) {
           <label>
             <p className='block mb-1 text-sm font-medium'>Phone Number</p>
             <PhoneInput
-               country={'us'}
-               value={phone_number}
-               onChange={(value) => {
+              country={'uz'}
+              value={phone_number}
+              onChange={(value) => {
                 if (!value.startsWith('+')) {
                   setPhone_number('+' + value);
                 } else {
                   setPhone_number(value);
                 }
               }}
-               inputClass="!w-full p-2  pl-10 border border-gray-300 rounded-md outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-sm"
-               containerClass="w-full"
-               buttonClass="border-r border-gray-300 px-2 bg-white"
-               dropdownClass="bg-white border border-gray-300 rounded-md shadow-lg mt-1 max-h-60 overflow-auto !text-sm"
+              inputClass="!w-full p-2  pl-10 border border-gray-300 rounded-md outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-sm"
+              containerClass="w-full"
+              buttonClass="border-r border-gray-300 px-2 bg-white"
+              dropdownClass="bg-white border border-gray-300 rounded-md shadow-lg mt-1 max-h-60 overflow-auto !text-sm"
             />
           </label>
           <label>
             <p className='block mb-1 text-sm font-medium'>Email</p>
             <input
               required
-              placeholder='Email (com , uz , ru)'
+              placeholder='Email'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className='outline-none w-full p-2 border border-gray-300 rounded mb-1'
@@ -94,7 +94,6 @@ function ContactModal({setOpen , getContact}) {
             <p className='block mb-1 text-sm font-medium'>Address (EN)</p>
             <textarea
               required
-              placeholder='Address (EN)'
               value={address_en}
               onChange={(e) => setAddressEn(e.target.value)}
               className='outline-none w-full p-2 border border-gray-300 rounded mb-1'
@@ -105,7 +104,6 @@ function ContactModal({setOpen , getContact}) {
             <p className='block mb-1 text-sm font-medium'>Address (RU)</p>
             <textarea
               required
-              placeholder='Address (RU)'
               value={address_ru}
               onChange={(e) => setAddressRu(e.target.value)}
               className='outline-none w-full p-2 border border-gray-300 rounded mb-1'
@@ -116,7 +114,6 @@ function ContactModal({setOpen , getContact}) {
             <p className='block mb-1 text-sm font-medium'>Address (DE)</p>
             <textarea
               required
-              placeholder='Address (DE)'
               value={address_de}
               onChange={(e) => setAddressDe(e.target.value)}
               className='outline-none w-full p-2 border border-gray-300 rounded mb-1'

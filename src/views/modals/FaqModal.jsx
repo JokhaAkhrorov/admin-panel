@@ -3,7 +3,7 @@ import { MdClose } from "react-icons/md";
 import { getToken } from '../../utils/auth';
 import { toast } from 'react-toastify';
 
-function FaqModal({getFaq , setOpen}) {
+function FaqModal({ getFaq, setOpen }) {
 
 
   const [questionEn, setQuestionEn] = useState("");
