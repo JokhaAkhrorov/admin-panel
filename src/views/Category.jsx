@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import CategoryMadal from './modals/CategoryMadal'
+import CategoryMadal from './modals/CategoryModal.jsx'
 import { getToken } from '../utils/auth'
 import { toast } from 'react-toastify'
 import { noData } from '../assets'
