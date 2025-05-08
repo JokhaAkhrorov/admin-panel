@@ -41,7 +41,8 @@ function News() {
       .then(res => res.json())
       .then(item => {
         if (item?.success) {
-          toast.success(item?.data?.message)
+          // toast.success(item?.data?.message)
+          toast.success("Silme işlemi başarılı")
           getNews()
         } else {
           toast.error(item?.message?.message)
@@ -74,7 +75,7 @@ function News() {
 
   // Silme işlemini onayla
   const confirmDelete = () => {
-    deleteTeam(confirmDeleteId)
+    deleteNews(confirmDeleteId) // ✅ doğru fonksiyon adı
     closeDeleteModal()
   }
 

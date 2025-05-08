@@ -29,7 +29,8 @@ function Products() {
     })
     const item = await res.json();
     if (item?.success) {
-      toast.success("Product delete success")
+      // toast.success("Product delete success")
+      toast.success("Silme işlemi başarılı")
       getProducts()
     } else {
       toast.error("Product delete error")

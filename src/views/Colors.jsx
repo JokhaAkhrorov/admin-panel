@@ -4,9 +4,28 @@ import { toast } from 'react-toastify'
 import ColorModal from './modals/ColorModal'
 import { noData } from '../assets'
 import ColorEdit from './editModals/ColorEdit'
+import DeleteConfirmModal from './modals/DeleteConfirmModal'
 
 function Colors() {
 
+  // Yeni state'ler
+  const [confirmDeleteId, setConfirmDeleteId] = useState(null)
+
+  // Modalı aç
+  const openDeleteModal = (id) => {
+    setConfirmDeleteId(id)
+  }
+
+  // Modalı kapat
+  const closeDeleteModal = () => {
+    setConfirmDeleteId(null)
+  }
+
+  // Silmeyi onayla
+  const confirmDelete = () => {
+    deleteColor(confirmDeleteId)
+    closeDeleteModal()
+  }
 
   // Open modal 
   const [open, setOpen] = useState(false)
@@ -40,7 +59,8 @@ function Colors() {
       .then(res => res.json())
       .then(item => {
         if (item?.success) {
-          toast.success(item?.data?.message)
+          // toast.success(item?.data?.message)
+          toast.success("Silme işlemi başarılı")
           getColors()
         } else {
           toast.error(item?.message?.message)
@@ -91,12 +111,14 @@ function Colors() {
                   <td className='border border-gray-300 p-2'>{item.color_ru}</td>
                   <td className='border border-gray-300 p-2'>{item.color_de}</td>
                   <td className='border border-gray-300 p-2 w-[200px]'>
-                    <button 
-                      onClick={()=>getColorsID(item.id)}  
+                    <button
+                      onClick={() => getColorsID(item.id)}
                       className='px-4 py-2 mr-2 cursor-pointer bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition'>Edit</button>
                     <button
-                      onClick={() => deleteColor(item.id)}
-                      className='px-4 py-2 cursor-pointer bg-red-500 text-white rounded-lg hover:bg-red-600 transition'>Delete</button>
+                      onClick={() => openDeleteModal(item.id)}
+                      className='px-4 py-2 cursor-pointer bg-red-500 text-white rounded-lg hover:bg-red-600 transition'>
+                      Delete
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -108,6 +130,15 @@ function Colors() {
           </div> : <span></span>}
         </div>
       </div>
+
+      {/* Silme Onay Modalı */}
+      {confirmDeleteId && (
+        <DeleteConfirmModal
+          onCancel={closeDeleteModal}
+          onDelete={confirmDelete}
+        />
+      )}
+
       {open && <ColorModal setOpen={setOpen} getColors={getColors} />}
       {editOpen && <ColorEdit dataID={dataID} editID={editID} seteditOpen={seteditOpen} getColors={getColors} />}
     </>

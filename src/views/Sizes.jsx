@@ -4,10 +4,28 @@ import { toast } from 'react-toastify'
 import SizesModal from './modals/SizesModal'
 import { noData } from '../assets'
 import SizesEdit from './editModals/SizesEdit'
+import DeleteConfirmModal from './modals/DeleteConfirmModal'
 
 function Sizes() {
 
+  // Yeni state'ler
+  const [confirmDeleteId, setConfirmDeleteId] = useState(null)
 
+  // Modalı aç
+  const openDeleteModal = (id) => {
+    setConfirmDeleteId(id)
+  }
+
+  // Modalı kapat
+  const closeDeleteModal = () => {
+    setConfirmDeleteId(null)
+  }
+
+  // Silmeyi onayla
+  const confirmDelete = () => {
+    deleteSizes(confirmDeleteId)
+    closeDeleteModal()
+  }
 
   // Open modal 
   const [open, setOpen] = useState(false)
@@ -41,7 +59,7 @@ function Sizes() {
       .then(res => res.json())
       .then(item => {
         if (item?.success) {
-          toast.success(item?.data?.message)
+          toast.success("Silme işlemi başarılı")
           getSizes()
         } else {
           toast.error(item?.message?.message)
@@ -51,17 +69,17 @@ function Sizes() {
 
 
 
-    const [dataID, setDataID] = useState([])
-    const [editID, setEditID] = useState("")
-    // Edit modal 
-    const [editOpen, seteditOpen] = useState(false)
-    const getSizeID = async (id) => {
-      const res = await fetch(`https://back.ifly.com.uz/api/sizes/${id}`);
-      const item = await res.json();
-      setDataID(item?.data);
-      setEditID(id)
-      seteditOpen(true)
-    }
+  const [dataID, setDataID] = useState([])
+  const [editID, setEditID] = useState("")
+  // Edit modal 
+  const [editOpen, seteditOpen] = useState(false)
+  const getSizeID = async (id) => {
+    const res = await fetch(`https://back.ifly.com.uz/api/sizes/${id}`);
+    const item = await res.json();
+    setDataID(item?.data);
+    setEditID(id)
+    seteditOpen(true)
+  }
 
 
   return (
@@ -82,21 +100,23 @@ function Sizes() {
                 <th className='border border-gray-300 p-2'>Actions</th>
               </tr>
             </thead>
-            {data &&  <tbody>
-              {data.map((item , i)=> (
-            <tr key={i} className='text-center hover:bg-gray-100'>
-              <td className='border border-gray-300 p-2'>{i + 1}</td>
-              <td className='border border-gray-300 p-2'>{item.size}</td>
-              <td className='border border-gray-300 p-2 w-[200px]'>
-                <button 
-                  onClick={()=>getSizeID(item.id)}
-                  className='px-4 py-2 mr-2 cursor-pointer bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition'>Edit</button>
-                <button 
-                  onClick={()=>deleteSizes(item.id)}
-                  className='px-4 py-2 cursor-pointer bg-red-500 text-white rounded-lg hover:bg-red-600 transition'>Delete</button>
-              </td>
-          </tr>
-          ))}</tbody> }
+            {data && <tbody>
+              {data.map((item, i) => (
+                <tr key={i} className='text-center hover:bg-gray-100'>
+                  <td className='border border-gray-300 p-2'>{i + 1}</td>
+                  <td className='border border-gray-300 p-2'>{item.size}</td>
+                  <td className='border border-gray-300 p-2 w-[200px]'>
+                    <button
+                      onClick={() => getSizeID(item.id)}
+                      className='px-4 py-2 mr-2 cursor-pointer bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition'>Edit</button>
+                    <button
+                      onClick={() => openDeleteModal(item.id)}
+                      className='px-4 py-2 cursor-pointer bg-red-500 text-white rounded-lg hover:bg-red-600 transition'>
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}</tbody>}
           </table>
           {data.length === 0 ? <div className='text-center py-6'>
             <img src={noData} alt="nodata" className='mx-auto w-20' />
@@ -104,6 +124,15 @@ function Sizes() {
           </div> : <span></span>}
         </div>
       </div>
+
+      {/* Silme Onay Modalı */}
+      {confirmDeleteId && (
+        <DeleteConfirmModal
+          onCancel={closeDeleteModal}
+          onDelete={confirmDelete}
+        />
+      )}
+
       {open && <SizesModal setOpen={setOpen} getSizes={getSizes} />}
       {editOpen && <SizesEdit dataID={dataID} editID={editID} seteditOpen={seteditOpen} getSizes={getSizes} />}
     </>

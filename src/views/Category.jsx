@@ -4,8 +4,28 @@ import { getToken } from '../utils/auth'
 import { toast } from 'react-toastify'
 import { noData } from '../assets'
 import CategoryEdit from './editModals/CategoryEdit'
+import DeleteConfirmModal from './modals/DeleteConfirmModal'
 
 function Category() {
+
+  // Yeni state'ler
+  const [confirmDeleteId, setConfirmDeleteId] = useState(null)
+
+  // Modalı aç
+  const openDeleteModal = (id) => {
+    setConfirmDeleteId(id)
+  }
+
+  // Modalı kapat
+  const closeDeleteModal = () => {
+    setConfirmDeleteId(null)
+  }
+
+  // Silmeyi onayla
+  const confirmDelete = () => {
+    deleteCategory(confirmDeleteId)
+    closeDeleteModal()
+  }
 
   // Open modal 
   const [open, setOpen] = useState(false)
@@ -39,10 +59,11 @@ function Category() {
       .then(res => res.json())
       .then(item => {
         if (item?.success) {
-          toast.success(item?.data?.message)
+          // toast.success(item?.data?.message)
+          toast.success("Silme işlemi başarılı")
           getCategory()
         } else {
-          toast.error(item?.message?.message)
+          toast.error("Status-500 HATO")
         }
       })
   }
@@ -95,8 +116,10 @@ function Category() {
                       onClick={() => getCategoryID(item.id)}
                       className='px-4 py-2 mr-2 cursor-pointer bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition'>Edit</button>
                     <button
-                      onClick={() => deleteCategory(item.id)}
-                      className='px-4 py-2 cursor-pointer bg-red-500 text-white rounded-lg hover:bg-red-600 transition'>Delete</button>
+                      onClick={() => openDeleteModal(item.id)}
+                      className='px-4 py-2 cursor-pointer bg-red-500 text-white rounded-lg hover:bg-red-600 transition'>
+                      Delete
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -108,6 +131,15 @@ function Category() {
           </div> : <span></span>}
         </div>
       </div>
+
+      {/* Silme Onay Modalı */}
+      {confirmDeleteId && (
+        <DeleteConfirmModal
+          onCancel={closeDeleteModal}
+          onDelete={confirmDelete}
+        />
+      )}
+
       {open && <CategoryMadal setOpen={setOpen} getCategory={getCategory} />}
       {editOpen && <CategoryEdit editID={editID} dataID={dataID} seteditOpen={seteditOpen} getCategory={getCategory} />}
     </>

@@ -4,6 +4,7 @@ import { getToken } from '../utils/auth'
 import { toast } from 'react-toastify'
 import ContactModal from './modals/ContactModal'
 import ContactEdit from './editModals/ContactEdit'
+import DeleteConfirmModal from './modals/DeleteConfirmModal'
 
 function Contact() {
 
@@ -41,7 +42,8 @@ function Contact() {
       .then(res => res.json())
       .then(item => {
         if (item?.success) {
-          toast.success(item?.data?.message)
+          // toast.success(item?.data?.message)
+          toast.success("Silme işlemi başarılı")
           getContact()
         } else {
           toast.error(item?.message?.message)
@@ -50,7 +52,24 @@ function Contact() {
   }
 
 
+  // Yeni state'ler
+  const [confirmDeleteId, setConfirmDeleteId] = useState(null)
 
+  // Modalı aç
+  const openDeleteModal = (id) => {
+    setConfirmDeleteId(id)
+  }
+
+  // Modalı kapat
+  const closeDeleteModal = () => {
+    setConfirmDeleteId(null)
+  }
+
+  // Silmeyi onayla
+  const confirmDelete = () => {
+    deleteContact(confirmDeleteId)
+    closeDeleteModal()
+  }
 
   const [dataID, setDataID] = useState([])
   const [editID, setEditID] = useState("")
@@ -94,12 +113,14 @@ function Contact() {
                   <td className='border border-gray-300 p-2'>{item.email}</td>
                   <td className='border border-gray-300 p-2'>{item.address_en}</td>
                   <td className='border border-gray-300 p-2 '>
-                    <button 
-                      onClick={()=>getContactID(item.id)}
+                    <button
+                      onClick={() => getContactID(item.id)}
                       className='px-4 py-2 mr-2 cursor-pointer bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition'>Edit</button>
                     <button
-                      onClick={() => deleteContact(item.id)}
-                      className='px-4 py-2 cursor-pointer bg-red-500 text-white rounded-lg hover:bg-red-600 transition'>Delete</button>
+                      onClick={() => openDeleteModal(item.id)}
+                      className='px-4 py-2 cursor-pointer bg-red-500 text-white rounded-lg hover:bg-red-600 transition'>
+                      Delete
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -111,6 +132,15 @@ function Contact() {
           </div> : <span></span>}
         </div>
       </div>
+
+      {/* Silme Onay Modalı */}
+      {confirmDeleteId && (
+        <DeleteConfirmModal
+          onCancel={closeDeleteModal}
+          onDelete={confirmDelete}
+        />
+      )}
+
       {open && <ContactModal setOpen={setOpen} getContact={getContact} />}
       {editOpen && <ContactEdit dataID={dataID} editID={editID} seteditOpen={seteditOpen} getContact={getContact} />}
     </>

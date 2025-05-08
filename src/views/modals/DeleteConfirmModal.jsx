@@ -3,7 +3,7 @@ import React from 'react'
 
 function DeleteConfirmModal({ onCancel, onDelete }) {
     return (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-30 flex justify-center items-center">
+        <div className="fixed inset-0 z-50 bg-black bg-black/70 flex justify-center items-center">
             <div className="bg-white rounded-lg p-6 w-[300px] shadow-lg">
                 <h2 className="text-lg font-semibold mb-4 text-center">Are you sure?</h2>
                 <div className="flex justify-end gap-4">
