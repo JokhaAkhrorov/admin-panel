@@ -26,7 +26,7 @@ function TeamModal({ setOpen, getTeam, editData }) {
     const addCTeamItem = (e) => {
         e.preventDefault()
 
-        fetch("https://back.ifly.com.uz/api/team-section", {
+        fetch("https://testaoron.limsa.uz/api/team-section", {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${getToken()}`
@@ -37,9 +37,9 @@ function TeamModal({ setOpen, getTeam, editData }) {
             .then(item => {
                 if (item?.success) {
                     toast.success("Team member successfully added!");
-                    // ma'lumotlarni yangilash 
+                    // update content 
                     getTeam()
-                    // modalni yopish 
+                    // close modal 
                     setOpen(false)
                 } else {
                     toast.error(item?.message?.message[0])
@@ -71,7 +71,7 @@ function TeamModal({ setOpen, getTeam, editData }) {
     const editTeam = async (e) => {
         e.preventDefault()
 
-        const resurs = await fetch(`https://back.ifly.com.uz/api/team-section/${editData.id}`, {
+        const resurs = await fetch(`https://testaoron.limsa.uz/api/team-section/${editData.id}`, {
             method: "PATCH",
             headers: {
                 "Authorization": `Bearer ${getToken()}`

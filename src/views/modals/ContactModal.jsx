@@ -18,7 +18,7 @@ function ContactModal({ setOpen, getContact }) {
   const addContactItem = (e) => {
     e.preventDefault()
 
-    fetch("https://back.ifly.com.uz/api/contact", {
+    fetch("https://testaoron.limsa.uz/api/contact", {
       method: "POST",
       headers: {
         "Content-type": "application/json",

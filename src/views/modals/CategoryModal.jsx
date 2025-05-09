@@ -12,7 +12,7 @@ function CategoryMadal({ setOpen, getCategory }) {
   const addCategoryItem = (e) => {
     e.preventDefault()
 
-    fetch("https://back.ifly.com.uz/api/category", {
+    fetch("https://testaoron.limsa.uz/api/category", {
       method: "POST",
       headers: {
         "Content-type": "application/json",

@@ -24,7 +24,7 @@ function DiscountEdit({ editID, getDiscounts, seteditOpen, dataID }) {
   const editDiscountItem = async (e) => {
     e.preventDefault()
 
-    const res = await fetch(`https://back.ifly.com.uz/api/discount/${editID}`, {
+    const res = await fetch(`https://testaoron.limsa.uz/api/discount/${editID}`, {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",

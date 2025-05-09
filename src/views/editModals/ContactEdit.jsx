@@ -28,7 +28,7 @@ function ContactEdit({ editID, getContact, seteditOpen, dataID }) {
   const editContactItem = async (e) => {
     e.preventDefault()
 
-    const res = await fetch(`https://back.ifly.com.uz/api/contact/${editID}`, {
+    const res = await fetch(`https://testaoron.limsa.uz/api/contact/${editID}`, {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",
@@ -52,12 +52,12 @@ function ContactEdit({ editID, getContact, seteditOpen, dataID }) {
       toast.error("Contacts edit failed")
     }
 
-     // formni tozalash 
-     setPhone_number("")
-     setEmail("")
-     setAddressEn("")
-     setAddressRu("")
-     setAddressDe("")
+    // formni tozalash 
+    setPhone_number("")
+    setEmail("")
+    setAddressEn("")
+    setAddressRu("")
+    setAddressDe("")
 
   }
 

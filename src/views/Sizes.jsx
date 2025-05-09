@@ -35,7 +35,7 @@ function Sizes() {
 
   // get size 
   const getSizes = () => {
-    fetch("https://back.ifly.com.uz/api/sizes")
+    fetch("https://testaoron.limsa.uz/api/sizes")
       .then(res => res.json())
       .then(item => setData(item?.data)
       )
@@ -49,7 +49,7 @@ function Sizes() {
   //delete Size
   const deleteSizes = (id) => {
 
-    fetch(`https://back.ifly.com.uz/api/sizes/${id}`, {
+    fetch(`https://testaoron.limsa.uz/api/sizes/${id}`, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",
@@ -74,7 +74,7 @@ function Sizes() {
   // Edit modal 
   const [editOpen, seteditOpen] = useState(false)
   const getSizeID = async (id) => {
-    const res = await fetch(`https://back.ifly.com.uz/api/sizes/${id}`);
+    const res = await fetch(`https://testaoron.limsa.uz/api/sizes/${id}`);
     const item = await res.json();
     setDataID(item?.data);
     setEditID(id)

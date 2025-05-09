@@ -35,7 +35,7 @@ function Category() {
 
   // get category 
   const getCategory = () => {
-    fetch("https://back.ifly.com.uz/api/category")
+    fetch("https://testaoron.limsa.uz/api/category")
       .then(res => res.json())
       .then(item => setData(item?.data)
       )
@@ -49,7 +49,7 @@ function Category() {
   //delete category
   const deleteCategory = (id) => {
 
-    fetch(`https://back.ifly.com.uz/api/category/${id}`, {
+    fetch(`https://testaoron.limsa.uz/api/category/${id}`, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",
@@ -75,7 +75,7 @@ function Category() {
   const [editOpen, seteditOpen] = useState(false)
 
   const getCategoryID = async (id) => {
-    const res = await fetch(`https://back.ifly.com.uz/api/category/${id}`);
+    const res = await fetch(`https://testaoron.limsa.uz/api/category/${id}`);
     const item = await res.json();
     setDataID(item?.data);
     setEditID(id)

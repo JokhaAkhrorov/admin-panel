@@ -50,8 +50,8 @@ function NewsModal({ getNews, setOpen, editData }) {
     if (form.image) formData.append("file", form.image);
 
     const url = editData
-      ? `https://back.ifly.com.uz/api/news/${editData.id}`
-      : "https://back.ifly.com.uz/api/news";
+      ? `https://testaoron.limsa.uz/api/news/${editData.id}`
+      : "https://testaoron.limsa.uz/api/news";
 
     const method = editData ? "PATCH" : "POST";
 
@@ -71,10 +71,10 @@ function NewsModal({ getNews, setOpen, editData }) {
         getNews();
         setOpen(false);
       } else {
-        toast.error(data?.message?.message || "Xatolik yuz berdi");
+        toast.error(data?.message?.message || "Error");
       }
     } catch (error) {
-      toast.error("Server bilan bog‘lanishda xatolik");
+      toast.error("Not connect servis");
     }
   };
 

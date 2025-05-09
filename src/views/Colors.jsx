@@ -35,7 +35,7 @@ function Colors() {
 
   // get color 
   const getColors = () => {
-    fetch("https://back.ifly.com.uz/api/colors")
+    fetch("https://testaoron.limsa.uz/api/colors")
       .then(res => res.json())
       .then(item => setData(item?.data)
       )
@@ -49,7 +49,7 @@ function Colors() {
   //delete Color
   const deleteColor = (id) => {
 
-    fetch(`https://back.ifly.com.uz/api/colors/${id}`, {
+    fetch(`https://testaoron.limsa.uz/api/colors/${id}`, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",
@@ -75,7 +75,7 @@ function Colors() {
   // Edit modal 
   const [editOpen, seteditOpen] = useState(false)
   const getColorsID = async (id) => {
-    const res = await fetch(`https://back.ifly.com.uz/api/colors/${id}`);
+    const res = await fetch(`https://testaoron.limsa.uz/api/colors/${id}`);
     const item = await res.json();
     setDataID(item?.data);
     setEditID(id)

@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { getToken } from '../../utils/auth';
 import { toast } from 'react-toastify';
 import { MdClose } from "react-icons/md";
@@ -28,7 +28,7 @@ function ColorEdit({ editID, getColors, seteditOpen, dataID }) {
   const addColorItem = async (e) => {
     e.preventDefault()
 
-    const res = await fetch(`https://back.ifly.com.uz/api/colors/${editID}`, {
+    const res = await fetch(`https://testaoron.limsa.uz/api/colors/${editID}`, {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",

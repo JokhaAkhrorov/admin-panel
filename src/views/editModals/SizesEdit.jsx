@@ -3,9 +3,9 @@ import { getToken } from '../../utils/auth';
 import { MdClose } from 'react-icons/md';
 import { toast } from 'react-toastify';
 
-function SizesEdit({editID, getSizes, seteditOpen, dataID}) {
+function SizesEdit({ editID, getSizes, seteditOpen, dataID }) {
 
-const [size , setSize]= useState("");
+  const [size, setSize] = useState("");
 
   useEffect(() => {
     if (dataID) {
@@ -17,7 +17,7 @@ const [size , setSize]= useState("");
   const editSizeItem = async (e) => {
     e.preventDefault()
 
-    const res = await fetch(`https://back.ifly.com.uz/api/sizes/${editID}`, {
+    const res = await fetch(`https://testaoron.limsa.uz/api/sizes/${editID}`, {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",

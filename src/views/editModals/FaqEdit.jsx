@@ -36,7 +36,7 @@ function FaqEdit({ editID, getFaq, seteditOpen, dataID }) {
   const addFaqItem = async (e) => {
     e.preventDefault()
 
-    const res = await fetch(`https://back.ifly.com.uz/api/faq/${editID}`, {
+    const res = await fetch(`https://testaoron.limsa.uz/api/faq/${editID}`, {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",

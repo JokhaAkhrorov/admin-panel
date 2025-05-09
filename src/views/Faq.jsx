@@ -35,7 +35,7 @@ function Faq() {
 
   // get Faq 
   const getFaq = () => {
-    fetch("https://back.ifly.com.uz/api/faq")
+    fetch("https://testaoron.limsa.uz/api/faq")
       .then(res => res.json())
       .then(item => setData(item?.data)
       )
@@ -49,7 +49,7 @@ function Faq() {
   //delete Faq
   const deleteFaq = (id) => {
 
-    fetch(`https://back.ifly.com.uz/api/faq/${id}`, {
+    fetch(`https://testaoron.limsa.uz/api/faq/${id}`, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",
@@ -76,7 +76,7 @@ function Faq() {
   // Edit modal 
   const [editOpen, seteditOpen] = useState(false)
   const getFaqID = async (id) => {
-    const res = await fetch(`https://back.ifly.com.uz/api/faq/${id}`);
+    const res = await fetch(`https://testaoron.limsa.uz/api/faq/${id}`);
     const item = await res.json();
     setDataID(item?.data);
     setEditID(id)

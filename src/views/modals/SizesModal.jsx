@@ -3,40 +3,40 @@ import { MdClose } from "react-icons/md";
 import { toast } from 'react-toastify';
 import { getToken } from '../../utils/auth';
 
-function SizesModal({setOpen , getSizes}) {
-    
-    const [size , setSize]= useState("");
-  
-    const addCategoryItem =(e)=>{
-      e.preventDefault()
-  
-      fetch("https://back.ifly.com.uz/api/sizes",{
-        method:"POST",
-        headers:{
-          "Content-type":"application/json",
-          "Authorization" : `Bearer ${getToken()}`
-        },
-        body: JSON.stringify({
-          "size":size
-        })
+function SizesModal({ setOpen, getSizes }) {
+
+  const [size, setSize] = useState("");
+
+  const addCategoryItem = (e) => {
+    e.preventDefault()
+
+    fetch("https://testaoron.limsa.uz/api/sizes", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": `Bearer ${getToken()}`
+      },
+      body: JSON.stringify({
+        "size": size
       })
-      .then(res=>res.json())
-      .then(item=> {
-        if(item?.success){
+    })
+      .then(res => res.json())
+      .then(item => {
+        if (item?.success) {
           toast.success("Category successfully"),
-          // ma'lumotlarni yangilash 
-          getSizes()
-          // modalni yopish 
+            // update content 
+            getSizes()
+          // close modal
           setOpen(false)
-        }else{
+        } else {
           toast.error("Category failed")
         }
       })
-  
-     // formni tozalash 
-     setSize("")
-    }
-  
+
+    // clean form
+    setSize("")
+  }
+
 
 
   return (

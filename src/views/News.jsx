@@ -18,7 +18,7 @@ function News() {
 
   // get News 
   const getNews = () => {
-    fetch("https://back.ifly.com.uz/api/news")
+    fetch("https://testaoron.limsa.uz/api/news")
       .then(res => res.json())
       .then(item => setData(item?.data)
       )
@@ -32,7 +32,7 @@ function News() {
   //delete News
   const deleteNews = (id) => {
 
-    fetch(`https://back.ifly.com.uz/api/news/${id}`, {
+    fetch(`https://testaoron.limsa.uz/api/news/${id}`, {
       method: "DELETE",
       headers: {
         "Authorization": `Bearer ${getToken()}`
@@ -53,7 +53,7 @@ function News() {
 
   // Resim modalını aç
   const openImageModal = (image) => {
-    setSelectedImage(`https://back.ifly.com.uz/${image}`)
+    setSelectedImage(`https://testaoron.limsa.uz/${image}`)
     setImageModalOpen(true)
   }
 
@@ -112,7 +112,7 @@ function News() {
                   <td className='border border-gray-300 p-2 cursor-pointer'
                     onClick={() => openImageModal(item.image)} // Resme tıklanınca modal aç
                   >
-                    <img src={`https://back.ifly.com.uz/${item.image}`} alt="img" className='w-16 h-16 object-cover mx-auto rounded' />
+                    <img src={`https://testaoron.limsa.uz/${item.image}`} alt="img" className='w-16 h-16 object-cover mx-auto rounded' />
                   </td>
                   <td className='border border-gray-300 p-2'>{item.title_en}</td>
                   <td className='border border-gray-300 p-2'>{item.description_en}</td>

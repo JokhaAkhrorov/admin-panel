@@ -18,7 +18,7 @@ function Contact() {
 
   // get contact 
   const getContact = () => {
-    fetch("https://back.ifly.com.uz/api/contact")
+    fetch("https://testaoron.limsa.uz/api/contact")
       .then(res => res.json())
       .then(item => setData(item?.data)
       )
@@ -32,7 +32,7 @@ function Contact() {
   //delete category
   const deleteContact = (id) => {
 
-    fetch(`https://back.ifly.com.uz/api/contact/${id}`, {
+    fetch(`https://testaoron.limsa.uz/api/contact/${id}`, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",
@@ -76,7 +76,7 @@ function Contact() {
   // Edit modal 
   const [editOpen, seteditOpen] = useState(false)
   const getContactID = async (id) => {
-    const res = await fetch(`https://back.ifly.com.uz/api/contact/${id}`);
+    const res = await fetch(`https://testaoron.limsa.uz/api/contact/${id}`);
     const item = await res.json();
     setDataID(item?.data);
     setEditID(id)

@@ -18,7 +18,7 @@ export default function Login() {
     setLoginChek(!login);
     setPasswordChek(!password);
     if (login && password) {
-      fetch("https://back.ifly.com.uz/api/auth/login", {
+      fetch("https://testaoron.limsa.uz/api/auth/login", {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({ login, password }),
@@ -30,7 +30,7 @@ export default function Login() {
             toast.success(item.data.message);
             navigate("/admin");
           } else {
-            toast.error(item.message?.message);
+            // toast.error(item.message?.message);
             setLogin("");
             setPassword("");
           }

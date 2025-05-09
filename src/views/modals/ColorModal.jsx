@@ -2,47 +2,47 @@ import React, { useState } from 'react'
 import { getToken } from '../../utils/auth';
 import { toast } from 'react-toastify';
 import { MdClose } from "react-icons/md";
-function ColorModal({setOpen,getColors}) {
+function ColorModal({ setOpen, getColors }) {
 
-    const [colorEn,setColorEn]= useState("");
-    const [colorRu,setColorRu]= useState("");
-    const [colorDe,setColorDe]= useState("");
-  
-    const addColorItem =(e)=>{
-      e.preventDefault()
-  
-      fetch("https://back.ifly.com.uz/api/colors",{
-        method:"POST",
-        headers:{
-          "Content-type":"application/json",
-          "Authorization" : `Bearer ${getToken()}`
-        },
-        body: JSON.stringify({
-          "color_en": colorEn,
-          "color_de": colorDe,
-          "color_ru": colorRu
-        })
+  const [colorEn, setColorEn] = useState("");
+  const [colorRu, setColorRu] = useState("");
+  const [colorDe, setColorDe] = useState("");
+
+  const addColorItem = (e) => {
+    e.preventDefault()
+
+    fetch("https://testaoron.limsa.uz/api/colors", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": `Bearer ${getToken()}`
+      },
+      body: JSON.stringify({
+        "color_en": colorEn,
+        "color_de": colorDe,
+        "color_ru": colorRu
       })
-      .then(res=>res.json())
-      .then(item=> {
-        if(item?.success){
+    })
+      .then(res => res.json())
+      .then(item => {
+        if (item?.success) {
           toast.success("Color successfully"),
-          // ma'lumotlarni yangilash 
-          getColors()
+            // ma'lumotlarni yangilash 
+            getColors()
           // modalni yopish 
           setOpen(false)
-        }else{
+        } else {
           toast.error("Color failed")
         }
       })
-  
-      // formni tozalash 
-      setColorEn(""),
+
+    // formni tozalash 
+    setColorEn(""),
       setColorDe(""),
-      setColorRu("")   
-    }
-  
-  
+      setColorRu("")
+  }
+
+
 
   return (
     <div onClick={() => setOpen(false)} className='fixed inset-0 bg-black/60 flex  justify-center items-center z-50 overflow-y-auto' >

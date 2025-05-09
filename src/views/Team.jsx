@@ -16,7 +16,7 @@ function Team() {
 
   // get Team
   const getTeam = () => {
-    fetch("https://back.ifly.com.uz/api/team-section")
+    fetch("https://testaoron.limsa.uz/api/team-section")
       .then(res => res.json())
       .then(item => setData(item?.data))
   }
@@ -27,7 +27,7 @@ function Team() {
 
   // Silme işlemi
   const deleteTeam = (id) => {
-    fetch(`https://back.ifly.com.uz/api/team-section/${id}`, {
+    fetch(`https://testaoron.limsa.uz/api/team-section/${id}`, {
       method: "DELETE",
       headers: {
         "Authorization": `Bearer ${getToken()}`
@@ -48,7 +48,7 @@ function Team() {
 
   // Resim modalını aç
   const openImageModal = (image) => {
-    setSelectedImage(`https://back.ifly.com.uz/${image}`)
+    setSelectedImage(`https://testaoron.limsa.uz/${image}`)
     setImageModalOpen(true)
   }
 
@@ -105,7 +105,7 @@ function Team() {
                   <td className='border border-gray-300 p-2 cursor-pointer'
                     onClick={() => openImageModal(item.image)} // Resme tıklanınca modal aç
                   >
-                    <img src={`https://back.ifly.com.uz/${item.image}`} alt="img" className='w-16 h-16 object-cover mx-auto rounded' />
+                    <img src={`https://testaoron.limsa.uz/${item.image}`} alt="img" className='w-16 h-16 object-cover mx-auto rounded' />
                   </td>
                   <td className='border border-gray-300 p-2'>{item.full_name}</td>
                   <td className='border border-gray-300 p-2'>{item.position_en}</td>

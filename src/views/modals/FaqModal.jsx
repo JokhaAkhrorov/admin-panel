@@ -16,7 +16,7 @@ function FaqModal({ getFaq, setOpen }) {
   const addFaqItem = (e) => {
     e.preventDefault()
 
-    fetch("https://back.ifly.com.uz/api/faq", {
+    fetch("https://testaoron.limsa.uz/api/faq", {
       method: "POST",
       headers: {
         "Content-type": "application/json",

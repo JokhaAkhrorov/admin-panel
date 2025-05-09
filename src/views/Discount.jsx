@@ -34,7 +34,7 @@ function Discount() {
 
   // get Discount 
   const getDiscounts = () => {
-    fetch("https://back.ifly.com.uz/api/discount")
+    fetch("https://testaoron.limsa.uz/api/discount")
       .then(res => res.json())
       .then(item => setData(item?.data))
   }
@@ -45,7 +45,7 @@ function Discount() {
 
   // delete Discount
   const deleteDiscount = (id) => {
-    fetch(`https://back.ifly.com.uz/api/discount/${id}`, {
+    fetch(`https://testaoron.limsa.uz/api/discount/${id}`, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",
@@ -71,7 +71,7 @@ function Discount() {
   // Edit modal 
   const [editOpen, seteditOpen] = useState(false)
   const getCategoryID = async (id) => {
-    const res = await fetch(`https://back.ifly.com.uz/api/discount/${id}`);
+    const res = await fetch(`https://testaoron.limsa.uz/api/discount/${id}`);
     const item = await res.json();
     setDataID(item?.data);
     setEditID(id)

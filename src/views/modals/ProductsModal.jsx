@@ -32,12 +32,12 @@ function ProductsModal({ getProducts, setOpen, editData }) {
             try {
                 const token = getToken();
                 const [sizesRes, colorsRes, discountsRes, categoryRes] = await Promise.all([
-                    fetch("https://back.ifly.com.uz/api/sizes", { headers: { Authorization: `Bearer ${token}` } }),
-                    fetch("https://back.ifly.com.uz/api/colors", { headers: { Authorization: `Bearer ${token}` } }),
-                    fetch("https://back.ifly.com.uz/api/discount", { headers: { Authorization: `Bearer ${token}` } }),
-                    fetch("https://back.ifly.com.uz/api/category", { headers: { Authorization: `Bearer ${token}` } })
+                    fetch("https://testaoron.limsa.uz/api/sizes", { headers: { Authorization: `Bearer ${token}` } }),
+                    fetch("https://testaoron.limsa.uz/api/colors", { headers: { Authorization: `Bearer ${token}` } }),
+                    fetch("https://testaoron.limsa.uz/api/discount", { headers: { Authorization: `Bearer ${token}` } }),
+                    fetch("https://testaoron.limsa.uz/api/category", { headers: { Authorization: `Bearer ${token}` } })
                 ]);
-
+                https://testaoron.limsa.uz/api
                 setSizesList((await sizesRes.json())?.data || []);
                 setColorsList((await colorsRes.json())?.data || []);
                 setDiscountsList((await discountsRes.json())?.data || []);
@@ -116,6 +116,7 @@ function ProductsModal({ getProducts, setOpen, editData }) {
         formData.append("min_sell", form.priceNum);
         formData.append("category_id", form.categoryId);
         formData.append("discount_id", form.discountId);
+        formData.append("files", form.image[0]);
 
         form.sizes.forEach(id => formData.append("sizes_id[]", id));
         form.colors.forEach(id => formData.append("colors_id[]", id));
@@ -128,8 +129,8 @@ function ProductsModal({ getProducts, setOpen, editData }) {
         formData.append("materials", JSON.stringify(materials));
 
         const url = editData
-            ? `https://back.ifly.com.uz/api/product/${editData.id}`
-            : "https://back.ifly.com.uz/api/product";
+            ? `https://testaoron.limsa.uz/api/product/${editData.id}`
+            : "https://testaoron.limsa.uz/api/product";
 
         const method = editData ? "PATCH" : "POST";
 
@@ -226,7 +227,7 @@ function ProductsModal({ getProducts, setOpen, editData }) {
 
                     {/* Discount */}
                     <select name="discountId" value={form.discountId} onChange={handleChange} className="w-full mb-3 p-2 border rounded">
-                        <option value="">Chegirma tanlang</option>
+                        <option value="">Select </option>
                         {discountsList.map(dis => (
                             <option key={dis.id} value={dis.id}>{dis.discount}%</option>
                         ))}
@@ -244,6 +245,18 @@ function ProductsModal({ getProducts, setOpen, editData }) {
                         ))}
                         <button type="button" onClick={addMaterial} className="text-blue-500 text-sm">+ Add Material</button>
                     </div>
+
+                    {/* File Upload */}
+                    <div className="mb-3">
+                        <p className="font-medium mb-1">Upload Images:</p>
+                        <input
+                            type="file"
+                            multiple
+                            onChange={handleFileChange}
+                            className="w-full p-2 border rounded"
+                        />
+                    </div>
+
                     <button type="submit" className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">
                         {editData ? 'Update Product' : 'Create Product'}
                     </button>

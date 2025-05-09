@@ -24,7 +24,7 @@ function CategoryEdit({ editID, getCategory, seteditOpen, dataID }) {
     e.preventDefault()
 
     try {
-      const response = await fetch(`https://back.ifly.com.uz/api/category/${editID}`, {
+      const response = await fetch(`https://testaoron.limsa.uz/api/category/${editID}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -41,8 +41,8 @@ function CategoryEdit({ editID, getCategory, seteditOpen, dataID }) {
 
       if (item?.success) {
         toast.success("Category edited successfully");
-        getCategory();       
-        seteditOpen(false);  
+        getCategory();
+        seteditOpen(false);
       } else {
         toast.error(item?.message || "Category edit failed");
       }
